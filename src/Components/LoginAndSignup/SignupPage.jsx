@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import { UserContext } from '../../store/user-context';
+import { apiUrl } from '../../config/api';
 
 import 'react-phone-input-2/lib/style.css';
 import './LoginAndSignupPage.css';
@@ -45,7 +46,7 @@ const SignupPage = () => {
 
     const imgExtension = image.type.split('/')[1];
 
-    const { url } = await fetch('/s3url', {
+    const { url } = await fetch(apiUrl('/s3url'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imgExtension }),
@@ -100,7 +101,7 @@ const SignupPage = () => {
 
         // console.log(userData);
 
-        response = await fetch('/customer/signup/', {
+        response = await fetch(apiUrl('/customer/signup'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {
@@ -144,7 +145,7 @@ const SignupPage = () => {
           password,
         };
 
-        response = await fetch('/hospital/signup/', {
+        response = await fetch(apiUrl('/hospital/signup'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {
@@ -181,7 +182,7 @@ const SignupPage = () => {
           email,
           password,
         };
-        response = await fetch('/insurer/signup/', {
+        response = await fetch(apiUrl('/insurer/signup'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+import { apiUrl } from '../config/api';
 const initialState = {
   type: '',
   data: {},
@@ -37,7 +37,7 @@ const UserProvider = props => {
       const role = localStorage.getItem('user-type');
       const id = localStorage.getItem('user-id');
       if (!role) return;
-      const response = await fetch(`${API_BASE_URL}/user`, {
+      const response = await fetch(apiUrl('/user'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

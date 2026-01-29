@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { apiUrl } from '../../config/api';
+
 import insurerIcon from '../../assets/icons/insurer.svg';
 import claimIcon from '../../assets/icons/claim.svg';
 import premiumIcon from '../../assets/icons/money-bag.svg';
@@ -42,7 +44,7 @@ const InsurancesPage = () => {
     const fetchInsurances = async () => {
       const token = localStorage.getItem('auth-token');
 
-      const response = await fetch('/customer/get-insurances', {
+      const response = await fetch(apiUrl('/customer/get-insurances'), {
         method: 'GET',
         headers: {
           Accept: 'application/json',

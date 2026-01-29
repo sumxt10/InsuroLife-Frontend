@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-
+import { apiUrl } from '../../config/api';
 import insurerIcon from '../../assets/icons/insurer.svg';
 import downArrowIcon from '../../assets/icons/down-arrow.svg';
 import callIcon from '../../assets/icons/call-icon.svg';
@@ -38,7 +38,7 @@ const AppointmentPage = () => {
     const fetchCounsellors = async () => {
       const token = localStorage.getItem('auth-token');
 
-      const response = await fetch('/customer/get-counsellors', {
+      const response = await fetch(apiUrl('/customer/get-counsellors'), {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -67,7 +67,7 @@ const AppointmentPage = () => {
     const token = localStorage.getItem('auth-token');
     const userId = localStorage.getItem('user-id');
 
-    await fetch('/customer/book-appointment', {
+    await fetch(apiUrl('/customer/book-appointment'), {
       method: 'POST',
       headers: {
         Accept: 'application/json',

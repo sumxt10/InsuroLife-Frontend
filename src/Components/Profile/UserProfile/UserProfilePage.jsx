@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../../../store/user-context';
 import { isImageValid, capitalize, formatDate } from '../../../helpers/helper';
+import { apiUrl } from '../../../config/api';
 
 import { Card, Button, Tabs, Tab, Modal } from 'react-bootstrap';
 import CoverImg from '../../../assets/images/unsplash_0aMMMUjiiEQ.svg';
@@ -42,7 +43,7 @@ const UserProfilePage = () => {
       const token = localStorage.getItem('auth-token');
       const userId = localStorage.getItem('user-id');
 
-      const response = await fetch('/insurer/get-user-appointments', {
+      const response = await fetch(apiUrl('/insurer/get-user-appointments'), {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -90,7 +91,7 @@ const UserProfilePage = () => {
 
     const imgExtension = newRecordData.image.type.split('/')[1];
 
-    const { url } = await fetch('/s3url', {
+    const { url } = await fetch(apiUrl('/s3url'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imgExtension }),
@@ -113,7 +114,7 @@ const UserProfilePage = () => {
 
     const token = localStorage.getItem('auth-token');
 
-    const response = await fetch('/customer/profile/medical_records', {
+    const response = await fetch(apiUrl('/customer/profile/medical_records'), {
       method: 'POST',
       headers: {
         Accept: 'application/json',

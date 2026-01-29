@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import { apiUrl } from '../../config/api';
 import { UserContext } from '../../store/user-context';
 
 import './LoginAndSignupPage.css';
@@ -31,7 +31,7 @@ const LoginPage = () => {
 
     switch (role) {
       case 'customer':
-        response = await fetch('/customer/login/', {
+        response = await fetch(apiUrl('/customer/login'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {
@@ -61,7 +61,7 @@ const LoginPage = () => {
         break;
 
       case 'hospital':
-        response = await fetch('/hospital/login/', {
+        response = await fetch(apiUrl('/hospital/login'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {
@@ -91,7 +91,7 @@ const LoginPage = () => {
         break;
 
       case 'insurer':
-        response = await fetch('/insurer/login/', {
+        response = await fetch(apiUrl('/insurer/login'), {
           method: 'POST',
           body: JSON.stringify(userData),
           headers: {
